@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:warehouse/db/warehouse_database.dart';
+import 'package:warehouse/pages/add_plan.dart';
 import '../model/plan_model.dart';
 
 class PlanPage extends StatefulWidget {
@@ -32,9 +33,13 @@ class _PlanPageState extends State<PlanPage> {
         backgroundColor: Colors.amber.shade800,
         foregroundColor: Colors.white,
         onPressed: () {
-          setState(() {
-            addNote();
-          });
+          // setState(() {
+          //   addNote();
+          // });
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddPlan()),
+          );
         },
         child: const Icon(Icons.add),
       ),

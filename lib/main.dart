@@ -17,6 +17,9 @@ class Warehouse extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.amber,
+        inputDecorationTheme: const InputDecorationTheme(
+          labelStyle: TextStyle(color: Colors.black87),
+        ),
         // scaffoldBackgroundColor: Colors.white,
       ),
       home: const RootPage(),
