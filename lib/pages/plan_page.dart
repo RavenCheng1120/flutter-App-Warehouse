@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:warehouse/db/warehouse_database.dart';
 import 'package:warehouse/pages/add_plan.dart';
+import 'package:warehouse/pages/display_plan.dart';
 import '../model/plan_model.dart';
 
 class PlanPage extends StatefulWidget {
@@ -11,19 +14,8 @@ class PlanPage extends StatefulWidget {
 }
 
 class _PlanPageState extends State<PlanPage> {
-  Future addNote() async {
-    final note = PlanModel(
-      productType: "type",
-      category: "cate",
-      productName: "name",
-      size: "size",
-      number: 10,
-      totalCost: 100,
-      pricing: 50,
-      manufacturer: "manufac",
-      createDate: DateTime.now(),
-    );
-    await WarehouseDatabase.instance.createPlan(note);
+  FutureOr refreshOnGoBack(dynamic value) {
+    setState(() {});
   }
 
   @override
@@ -33,13 +25,10 @@ class _PlanPageState extends State<PlanPage> {
         backgroundColor: Colors.amber.shade800,
         foregroundColor: Colors.white,
         onPressed: () {
-          // setState(() {
-          //   addNote();
-          // });
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const AddPlan()),
-          );
+          ).then(refreshOnGoBack);
         },
         child: const Icon(Icons.add),
       ),
@@ -54,6 +43,14 @@ class _PlanPageState extends State<PlanPage> {
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, i) {
                   return ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DisplayPlan(),
+                        ),
+                      );
+                    },
                     tileColor: Colors.amber.shade100,
                     leading: Icon(
                       Icons.image,
